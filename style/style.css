@@ -606,7 +606,8 @@ header.scrolled .header__container .logo img {
 }
 
 .section3 h3,
-.section4 h3 {
+.section4 h3,
+.section6 h3 {
   text-align: center;
   font-size: 32px;
   font-weight: 600;
@@ -820,7 +821,7 @@ header.scrolled .header__container .logo img {
 }
 
 .section5 .appointment__image img {
-  max-width: 850px;
+  width: 100%;
   position: relative;
 }
 
@@ -909,6 +910,59 @@ header.scrolled .header__container .logo img {
   }
 }
 
+/* -------------------------------------------------------------------------- Section 6 */
+.section6 {
+  padding: 2rem 0;
+  background: linear-gradient(360deg, #000e38 0%, #3f186a 100%);
+}
+.section6 .container {
+  justify-content: center;
+}
+.section6 h3 {
+  color: #fff;
+}
+.exhibition__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1rem;
+}
+
+.exhibition__cards-card {
+  background: linear-gradient(59.05deg, #ddbfff 0.39%, #edddff 93.5%);
+  border-radius: 10px;
+  padding: 1.5rem;
+  min-height: 200px;
+}
+.exhibition__cards-card h4 {
+  color: #000e38;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.exhibition__cards-card p {
+  color: #000e38;
+  opacity: 0.9;
+}
+
+.exhibition__cards-card img {
+  width: 60px;
+  height: 60px;
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .exhibition__cards {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+/* Tablet devices (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .exhibition__cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 /* -------------------------------------------------------------------------- Media Queries */
 
 .container {
@@ -945,6 +999,10 @@ header.scrolled .header__container .logo img {
 @media (min-width: 1200px) {
   .container {
     max-width: 1200px;
+  }
+
+  .section5 .appointment__image img {
+    min-width: 850px;
   }
 }
 
