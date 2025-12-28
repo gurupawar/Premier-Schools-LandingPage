@@ -947,7 +947,9 @@ header.scrolled .header__container .logo img {
 .exhibition__cards-card h4 {
   color: #000e38;
   font-size: 20px;
-  margin-top: 10px;
+  margin: 10px 0;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .exhibition__cards-card p {
@@ -1036,6 +1038,108 @@ header.scrolled .header__container .logo img {
   .exhibition__cards {
     transform: none !important;
   }
+}
+/* -------------------------------------------------------------------------- Footer */
+footer {
+  background: linear-gradient(360deg, #000e38 0%, #3f186a 100%);
+  padding: 2rem 0;
+}
+
+.footer__data-col1 img {
+  max-width: 120px;
+}
+
+.footer__data {
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+.footer__data-col2,
+.footer__data-col3,
+.footer__data-col4 {
+  display: flex;
+  width: 100%;
+}
+
+.footer__data-col2-left img,
+.footer__data-col3-left img,
+.footer__data-col4-left img {
+  width: 31.19px;
+}
+.footer__data-col5 img {
+  width: 31.19px;
+}
+
+.footer__data-col2-right,
+.footer__data-col3-right,
+.footer__data-col4-right {
+  color: white;
+  margin-left: 10px;
+  flex: 1;
+}
+
+.footer__data-col2-right p,
+.footer__data-col3-right p,
+.footer__data-col4-right p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+.footer__data-col5-right-social {
+  display: flex;
+  margin-top: 8px;
+}
+.footer__data-col5-right {
+  color: white;
+}
+.footer__data-col5-right-social img + img {
+  margin-left: 10px;
+}
+
+/* Footer Responsive */
+@media (max-width: 991px) {
+  .footer__data {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer__data-col1 {
+    grid-column: 1 / -1;
+    text-align: left;
+    display: flex;
+    justify-content: left;
+  }
+
+  .footer__data-col2,
+  .footer__data-col3,
+  .footer__data-col4 {
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+  }
+
+  .footer__data-col2-right,
+  .footer__data-col3-right,
+  .footer__data-col4-right {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .footer__data-col5 {
+    text-align: left;
+  }
+
+  .footer__data-col5-right-social {
+    justify-content: left;
+  }
+}
+
+.footer__credits {
+  padding: 10px;
+  text-align: center;
+  color: #000;
+  font-size: 14px;
 }
 /* -------------------------------------------------------------------------- Media Queries */
 
