@@ -252,7 +252,7 @@ header.scrolled .header__container .logo img {
 }
 
 .intro__text :nth-child(2) {
-  font-size: 34px;
+  font-size: 38px;
   font-weight: 600;
   margin: -3px 0;
 }
@@ -266,6 +266,7 @@ header.scrolled .header__container .logo img {
   justify-content: space-between;
   padding: 10px 20px;
   border-radius: 100px;
+  max-width: 340px;
 }
 
 .address-col1,
@@ -796,6 +797,115 @@ header.scrolled .header__container .logo img {
 @media (min-width: 992px) {
   .card__container {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* -------------------------------------------------------------------------- Section 5 */
+.section5 .appointment__container {
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(270deg, #ead7ff 45.09%, #dec1ff 100%);
+}
+
+.appointment__detail {
+  padding-left: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section5 .appointment__image {
+  position: relative;
+}
+
+.section5 .appointment__image img {
+  max-width: 850px;
+  position: relative;
+}
+
+.appointment__image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  bottom: 0;
+  width: 200px;
+  height: 100%;
+  z-index: 9;
+  background: linear-gradient(90deg, #ead7ff 0%, rgba(234, 215, 255, 0) 100%);
+}
+
+.appointment__detail .register__btn {
+  margin-top: 1rem;
+  max-width: 200px;
+}
+.appointment__details-tag {
+  color: #9b4df0;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.appointment__details-text {
+  color: #000e38;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+/* Mobile devices (up to 767px) */
+@media (max-width: 767px) {
+  .section5 .appointment__container {
+    flex-direction: column-reverse;
+  }
+
+  .appointment__detail {
+    padding: 30px 20px;
+    order: 2;
+  }
+
+  .section5 .appointment__image {
+    order: 1;
+  }
+
+  .section5 .appointment__image img {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .appointment__image::after {
+    top: -1px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(
+      180deg,
+      #ead7ff 0%,
+      rgba(234, 215, 255, 0) 100%
+    );
+  }
+
+  .appointment__details-tag {
+    font-size: 16px;
+  }
+
+  .appointment__details-text {
+    font-size: 28px;
+  }
+}
+
+/* Tablet devices (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .appointment__detail {
+    padding-left: 50px;
+  }
+
+  .section5 .appointment__image img {
+    max-width: 600px;
+  }
+
+  .appointment__details-text {
+    font-size: 32px;
   }
 }
 

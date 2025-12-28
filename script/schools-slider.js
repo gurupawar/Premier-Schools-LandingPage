@@ -73,10 +73,10 @@ function initSchoolsSlider() {
 }
 
 function initHeroSlider() {
-  const sliderContainer = document.querySelector('.slider-container');
-  const heroSlider = document.querySelector('.hero__wrapper-slider');
-  const sliderRows = sliderContainer.querySelectorAll('.slider-row');
-  
+  const sliderContainer = document.querySelector(".slider-container");
+  const heroSlider = document.querySelector(".hero__wrapper-slider");
+  const sliderRows = sliderContainer.querySelectorAll(".slider-row");
+
   if (sliderRows.length === 0) return;
 
   const rowHeight = 150;
@@ -84,7 +84,7 @@ function initHeroSlider() {
   let animationId = null;
   let isPaused = false;
 
-  sliderRows.forEach(row => {
+  sliderRows.forEach((row) => {
     const clone = row.cloneNode(true);
     sliderContainer.appendChild(clone);
   });
@@ -108,15 +108,15 @@ function initHeroSlider() {
     animationId = requestAnimationFrame(animate);
   }
 
-  heroSlider.addEventListener('mouseenter', () => {
+  heroSlider.addEventListener("mouseenter", () => {
     isPaused = true;
   });
 
-  heroSlider.addEventListener('mouseleave', () => {
+  heroSlider.addEventListener("mouseleave", () => {
     isPaused = false;
   });
 
-  document.addEventListener('visibilitychange', () => {
+  document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
       if (animationId) {
         cancelAnimationFrame(animationId);
