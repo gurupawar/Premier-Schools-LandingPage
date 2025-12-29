@@ -14,6 +14,9 @@
 </head>
 
 <body>
+  <!-- Skip to content link for keyboard navigation -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
   <script src="./script/slider.js"></script>
   <script src="./script/schools-slider.js"></script>
   <script src="./script/header-scroll.js"></script>
@@ -35,14 +38,17 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="section1">
+  <main id="main-content">
+  <section class="section1" aria-labelledby="hero-heading">
     <div class="container">
       <div class="hero__wrapper">
         <div class="hero__wrapper-intro">
           <div class="intro__text">
-            <span>Discover Gurugram's</span>
-            <span>Top 30+ schools</span>
-            <span>ALL IN ONE PLACE</span>
+            <h1 id="hero-heading">
+              <span>Discover Gurugram's</span>
+              <span>Top 30+ schools</span>
+              <span>ALL IN ONE PLACE</span>
+            </h1>
           </div>
           <div class="address">
             <div class="address-col1">
@@ -57,7 +63,7 @@
           </div>
         </div>
         <div class="hero__wrapper-slider">
-          <div class="slider-container">
+          <div class="slider-container" role="region" aria-label="School logos carousel" aria-live="polite">
             <div class="slider-row">
               <div class="slider__item">
                 <img src="./assets/slider/29.png" alt="School logo 29" />
@@ -151,17 +157,22 @@
         </div>
         <div class="hero__wrapper-inquiry">
           <div class="form__group">
-            <h3>Enquire Now</h3>
-            <form action="">
-              <input type="text" placeholder="Parent Name" />
-              <input type="tel" placeholder="Phone Number" />
-              <textarea name="grade_inquiry" id="grade_inquiry" placeholder="Which grade are you looking for?"></textarea>
-              <div class="register__btn">
+            <h3 id="enquiry-form-heading">Enquire Now</h3>
+            <form action="" aria-labelledby="enquiry-form-heading" novalidate>
+              <label for="parent-name" class="sr-only">Parent Name</label>
+              <input type="text" id="parent-name" name="parent-name" placeholder="Parent Name" required aria-required="true" />
+              <label for="phone-number" class="sr-only">Phone Number</label>
+              <input type="tel" id="phone-number" name="phone-number" placeholder="Phone Number" required aria-required="true" />
+              <label for="grade_inquiry" class="sr-only">Which grade are you looking for?</label>
+              <textarea name="grade_inquiry" id="grade_inquiry" placeholder="Which grade are you looking for?" aria-describedby="grade-help"></textarea>
+              <div id="grade-help" class="sr-only">Please specify the grade level you are interested in for your child</div>
+              <button type="submit" class="register__btn" aria-describedby="submit-help">
                 <div class="register__btn-arrow">
-                  <img src="./assets/arrow2.png" alt="Submit arrow icon" />
+                  <img src="./assets/arrow2.png" alt="" aria-hidden="true" />
                 </div>
                 <span class="register__btn-text">SUBMIT</span>
-              </div>
+              </button>
+              <div id="submit-help" class="sr-only">Submit your enquiry form to receive information about schools</div>
             </form>
           </div>
         </div>
@@ -205,12 +216,12 @@
   </section>
 
   <!-- Choose the School That Fits You Best -->
-  <section class="section4">
+  <section class="section4" aria-labelledby="school-types-heading">
     <div class="container">
-      <h3>Choose the School That Fits You Best</h3>
-      <div class="card__slider">
-        <div class="card__container">
-          <div class="card" style="background-image: url('./assets/section4/card_image1.png')">
+      <h3 id="school-types-heading">Choose the School That Fits You Best</h3>
+      <div class="card__slider" role="region" aria-labelledby="school-types-heading" aria-live="polite">
+        <div class="card__container" role="group" aria-label="School type cards">
+          <div class="card" id="card-0" role="tabpanel" aria-labelledby="tab-0" style="background-image: url('./assets/section4/card_image1.png')">
             <div class="card__overlay">
               <h5 class="card__title">
                 Pre-Schools & Early Learning Centres
@@ -221,7 +232,7 @@
               </p>
             </div>
           </div>
-          <div class="card" style="background-image: url('./assets/section4/card_image2.png')">
+          <div class="card" id="card-1" role="tabpanel" aria-labelledby="tab-1" style="background-image: url('./assets/section4/card_image2.png')">
             <div class="card__overlay">
               <h5 class="card__title">K–12 CBSE Day Schools</h5>
               <p class="card__para">
@@ -230,7 +241,7 @@
               </p>
             </div>
           </div>
-          <div class="card" style="background-image: url('./assets/section4/card_image3.png')">
+          <div class="card" id="card-2" role="tabpanel" aria-labelledby="tab-2" style="background-image: url('./assets/section4/card_image3.png')">
             <div class="card__overlay">
               <h5 class="card__title">Heritage to New-Age Schools</h5>
               <p class="card__para">
@@ -239,7 +250,7 @@
               </p>
             </div>
           </div>
-          <div class="card" style="background-image: url('./assets/section4/card_image4.png')">
+          <div class="card" id="card-3" role="tabpanel" aria-labelledby="tab-3" style="background-image: url('./assets/section4/card_image4.png')">
             <div class="card__overlay">
               <h5 class="card__title">International Curriculum Schools</h5>
               <p class="card__para">
@@ -249,11 +260,19 @@
             </div>
           </div>
         </div>
-        <div class="card__dots">
-          <span class="dot active" data-slide="0"></span>
-          <span class="dot" data-slide="1"></span>
-          <span class="dot" data-slide="2"></span>
-          <span class="dot" data-slide="3"></span>
+        <div class="card__dots" role="tablist" aria-label="School type navigation">
+          <button class="dot active" role="tab" aria-selected="true" aria-controls="card-0" data-slide="0" tabindex="0">
+            <span class="sr-only">Pre-Schools & Early Learning Centres</span>
+          </button>
+          <button class="dot" role="tab" aria-selected="false" aria-controls="card-1" data-slide="1" tabindex="-1">
+            <span class="sr-only">K–12 CBSE Day Schools</span>
+          </button>
+          <button class="dot" role="tab" aria-selected="false" aria-controls="card-2" data-slide="2" tabindex="-1">
+            <span class="sr-only">Heritage to New-Age Schools</span>
+          </button>
+          <button class="dot" role="tab" aria-selected="false" aria-controls="card-3" data-slide="3" tabindex="-1">
+            <span class="sr-only">International Curriculum Schools</span>
+          </button>
         </div>
       </div>
     </div>
@@ -283,11 +302,11 @@
     </div>
   </section>
   <!-- What Makes This Exhibition a Must-Visit -->
-  <section class="section6">
-    <h3>What Makes This Exhibition a Must-Visit</h3>
+  <section class="section6" aria-labelledby="exhibition-heading">
+    <h3 id="exhibition-heading">What Makes This Exhibition a Must-Visit</h3>
     <div class="container">
-      <div class="exhibition__carousel">
-        <div class="exhibition__cards">
+      <div class="exhibition__carousel" role="region" aria-labelledby="exhibition-heading" aria-live="polite">
+        <div class="exhibition__cards" role="group" aria-label="Exhibition features">
           <div class="exhibition__cards-card">
             <div class="exhibition__cards-card-icon">
               <img src="./assets/section6/fi_8480947.png" alt="Interaction icon" />
@@ -324,13 +343,19 @@
           </div>
         </div>
       </div>
-      <div class="exhibition__nav">
-        <button class="exhibition__nav-btn" id="prevBtn">‹</button>
-        <button class="exhibition__nav-btn" id="nextBtn">›</button>
+      <div class="exhibition__nav" role="group" aria-label="Exhibition carousel navigation">
+        <button class="exhibition__nav-btn" id="prevBtn" aria-label="Previous exhibition feature">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button class="exhibition__nav-btn" id="nextBtn" aria-label="Next exhibition feature">
+          <span aria-hidden="true">›</span>
+        </button>
       </div>
     </div>
   </section>
-  <footer>
+  </main>
+  <script src="./script/accessibility.js"></script>
+  <footer role="contentinfo">
     <div class="container">
       <div class="footer__data">
         <div class="footer__data-col1">
