@@ -1501,6 +1501,7 @@ footer {
 .footer__data-col5-right-social {
   display: flex;
   margin-top: 8px;
+  cursor: pointer;
 }
 .footer__data-col5-right {
   color: white;
