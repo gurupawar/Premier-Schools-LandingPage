@@ -1,20 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   let currentSlide = 0;
-  const cards = document.querySelectorAll('.exhibition__cards-card');
+  const cards = document.querySelectorAll(".exhibition__cards-card");
   const totalSlides = cards.length;
-  const cardsContainer = document.querySelector('.exhibition__cards');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const carousel = document.querySelector('.exhibition__carousel');
+  const cardsContainer = document.querySelector(".exhibition__cards");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const carousel = document.querySelector(".exhibition__carousel");
 
   function announceToScreenReader(message) {
-    const announcement = document.createElement('div');
-    announcement.setAttribute('aria-live', 'polite');
-    announcement.setAttribute('aria-atomic', 'true');
-    announcement.className = 'sr-only';
+    const announcement = document.createElement("div");
+    announcement.setAttribute("aria-live", "polite");
+    announcement.setAttribute("aria-atomic", "true");
+    announcement.className = "sr-only";
     announcement.textContent = message;
     document.body.appendChild(announcement);
-    
+
     setTimeout(() => {
       document.body.removeChild(announcement);
     }, 1000);
@@ -23,56 +23,55 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateCarousel() {
     // Check if we're on mobile
     const isMobile = window.innerWidth <= 767;
-    
+
     if (isMobile) {
-      // Calculate translation including gap (20px gap between cards)
       const cardWidth = cards[0].offsetWidth;
       const gap = 20;
       const translateX = -(currentSlide * (cardWidth + gap));
       cardsContainer.style.transform = `translateX(${translateX}px)`;
-      
-      // Update cards visibility for screen readers
+
       cards.forEach((card, index) => {
-        card.setAttribute('aria-hidden', (index !== currentSlide).toString());
+        card.setAttribute("aria-hidden", (index !== currentSlide).toString());
       });
-      
-      // Announce current slide
+
       const currentCard = cards[currentSlide];
-      const cardTitle = currentCard.querySelector('h4')?.textContent || `Feature ${currentSlide + 1}`;
-      announceToScreenReader(`Showing: ${cardTitle}. ${currentSlide + 1} of ${totalSlides}`);
+      const cardTitle =
+        currentCard.querySelector("h4")?.textContent ||
+        `Feature ${currentSlide + 1}`;
+      announceToScreenReader(
+        `Showing: ${cardTitle}. ${currentSlide + 1} of ${totalSlides}`
+      );
     } else {
-      // Desktop - no transform needed as it uses grid
-      cardsContainer.style.transform = 'none';
+      cardsContainer.style.transform = "none";
       // Remove aria-hidden for desktop view
-      cards.forEach(card => card.removeAttribute('aria-hidden'));
+      cards.forEach((card) => card.removeAttribute("aria-hidden"));
     }
-    
-    // Update button states and ARIA attributes
+
     const isFirstSlide = currentSlide === 0;
     const isLastSlide = currentSlide === totalSlides - 1;
-    
+
     prevBtn.disabled = isFirstSlide;
     nextBtn.disabled = isLastSlide;
-    
-    prevBtn.setAttribute('aria-disabled', isFirstSlide.toString());
-    nextBtn.setAttribute('aria-disabled', isLastSlide.toString());
-    
+
+    prevBtn.setAttribute("aria-disabled", isFirstSlide.toString());
+    nextBtn.setAttribute("aria-disabled", isLastSlide.toString());
+
     // Update carousel region description
-    carousel.setAttribute('aria-describedby', 'carousel-status');
-    
+    carousel.setAttribute("aria-describedby", "carousel-status");
+
     // Update or create status element
-    let statusElement = document.getElementById('carousel-status');
+    let statusElement = document.getElementById("carousel-status");
     if (!statusElement) {
-      statusElement = document.createElement('div');
-      statusElement.id = 'carousel-status';
-      statusElement.className = 'sr-only';
+      statusElement = document.createElement("div");
+      statusElement.id = "carousel-status";
+      statusElement.className = "sr-only";
       carousel.appendChild(statusElement);
     }
-    
+
     if (window.innerWidth <= 767) {
       statusElement.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
     } else {
-      statusElement.textContent = 'All exhibition features are visible';
+      statusElement.textContent = "All exhibition features are visible";
     }
   }
 
@@ -93,22 +92,22 @@ document.addEventListener('DOMContentLoaded', function() {
   // Keyboard navigation for carousel
   function handleCarouselKeydown(e) {
     if (window.innerWidth > 767) return; // Only on mobile
-    
-    switch(e.key) {
-      case 'ArrowLeft':
+
+    switch (e.key) {
+      case "ArrowLeft":
         e.preventDefault();
         prevSlide();
         break;
-      case 'ArrowRight':
+      case "ArrowRight":
         e.preventDefault();
         nextSlide();
         break;
-      case 'Home':
+      case "Home":
         e.preventDefault();
         currentSlide = 0;
         updateCarousel();
         break;
-      case 'End':
+      case "End":
         e.preventDefault();
         currentSlide = totalSlides - 1;
         updateCarousel();
@@ -116,11 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Button keyboard handlers
   function handleButtonKeydown(e, direction) {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      if (direction === 'next') {
+      if (direction === "next") {
         nextSlide();
       } else {
         prevSlide();
@@ -128,31 +126,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Handle window resize
-  window.addEventListener('resize', function() {
+  window.addEventListener("resize", function () {
     // Reset to first slide on resize to avoid issues
     currentSlide = 0;
     updateCarousel();
   });
 
   if (nextBtn && prevBtn && carousel) {
-    // Click handlers
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
-    
-    // Keyboard handlers for buttons
-    nextBtn.addEventListener('keydown', (e) => handleButtonKeydown(e, 'next'));
-    prevBtn.addEventListener('keydown', (e) => handleButtonKeydown(e, 'prev'));
-    
-    // Keyboard navigation for carousel container
-    carousel.addEventListener('keydown', handleCarouselKeydown);
-    
-    // Make carousel focusable on mobile for keyboard navigation
+    nextBtn.addEventListener("click", nextSlide);
+    prevBtn.addEventListener("click", prevSlide);
+
+    nextBtn.addEventListener("keydown", (e) => handleButtonKeydown(e, "next"));
+    prevBtn.addEventListener("keydown", (e) => handleButtonKeydown(e, "prev"));
+
+    carousel.addEventListener("keydown", handleCarouselKeydown);
+
     if (window.innerWidth <= 767) {
-      carousel.setAttribute('tabindex', '0');
-      carousel.setAttribute('aria-label', 'Exhibition features carousel. Use arrow keys to navigate.');
+      carousel.setAttribute("tabindex", "0");
+      carousel.setAttribute(
+        "aria-label",
+        "Exhibition features carousel. Use arrow keys to navigate."
+      );
     }
-    
-    updateCarousel(); // Initial state
+
+    updateCarousel();
   }
 });
