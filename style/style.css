@@ -890,6 +890,7 @@ textarea:invalid:focus {
   .card__slider {
     position: relative;
     overflow: hidden;
+    padding-bottom: 1rem;
   }
 
   .card__container {
